@@ -10,6 +10,7 @@ import { Loading } from "./src/components/Loading";
 import { THEME } from "./src/styles/theme";
 import { AuthContextProvider } from "./src/contexts/AuthContext";
 import { NewPool } from "./src/screens/NewPool";
+import { FindPool } from "./src/screens/FindPool";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,7 +27,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        {fontsLoaded ? <NewPool /> : <Loading />}
+        {fontsLoaded ? <FindPool /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   );

@@ -66,8 +66,10 @@ model Guess {
   secondTeamPoints Int
   createdAt        DateTime @default(now())
   gameId           String
+  participantId    String
 
-  participant   Participant @relation(fields: [participantId], references: [id])
-  game          Game        @relation(fields: [gameId], references: [id]) // Não cria coluna, somente relacionamento
-  participantId String
+  participant Participant @relation(fields: [participantId], references: [id])
+  game        Game        @relation(fields: [gameId], references: [id]) // Não cria coluna, somente relacionamento
+
+  @@unique([participantId, gameId])
 }

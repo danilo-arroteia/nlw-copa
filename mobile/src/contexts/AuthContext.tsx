@@ -7,14 +7,15 @@ import { api } from "../services/api";
 WebBrowser.maybeCompleteAuthSession();
 
 interface UserProps {
-  name: string;
-  avatarUrl: string;
+  name?: string;
+  avatarUrl?: string;
 }
 
 export interface AuthContextDataProps {
   user: UserProps;
   isUserLoading: boolean;
   signIn: () => Promise<void>;
+  signOut: () => Promise<void>;
 }
 
 interface AuthProviderProps {
@@ -43,6 +44,9 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     } finally {
       setIsUserLoading(false);
     }
+  }
+  async function signOut() {
+    setUser({});
   }
 
   async function signInWithGoogle(access_token: string) {
@@ -75,6 +79,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     <AuthContext.Provider
       value={{
         signIn,
+        signOut,
         isUserLoading,
         user,
       }}
